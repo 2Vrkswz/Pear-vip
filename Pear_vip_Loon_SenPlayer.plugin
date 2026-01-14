@@ -1,0 +1,16 @@
+#!name=Pear VIP 解锁（SenPlayer）
+#!desc=Pear 影视 / 动漫会员解锁（SenPlayer 播放器版）
+#!author=2Vrkswz
+#!icon=https://raw.githubusercontent.com/2Vrkswz/Pear-vip/main/icon/pear_icon.png
+#!homepage=https://github.com/2Vrkswz/Pear-vip
+
+[Rewrite]
+^https?:\/\/[^\/]+\/api\/movie\/ShopProduct - reject-dict
+
+[Script]
+http-request ^https?:\/\/[^\/]+\/api\/(movie\/(LikeUserLikeMovie|DetailInfo)|anime\/DetailRecommend)\/ script-path=https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/pear.js, timeout=60, tag=pear
+
+http-response ^https?:\/\/[^\/]+\/api\/(account\/(IndexDetail|IsVip)|cartoon\/VipInfo) script-path=https://raw.githubusercontent.com/Yu9191/Rewrite/refs/heads/main/pear.js, requires-body=true, timeout=60, tag=pear
+
+[MITM]
+hostname = *.baidu.com2.club, *.pearkin.com, *.pearhot.com
