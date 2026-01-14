@@ -1,0 +1,16 @@
+#!name=Pear VIP 解锁
+#!desc=Pear 影视 / 动漫 VIP 接口解锁
+#!author=2Vrkswz
+#!icon=https://raw.githubusercontent.com/2Vrkswz/Pear-vip/main/icon/pear_icon.png
+#!homepage=https://github.com/2Vrkswz/Pear-vip
+
+[Rule]
+URL-REGEX,^https?:\/\/[^\/]+\/api\/movie\/ShopProduct,REJECT-DICT
+
+[Script]
+http-request ^https?:\/\/[^\/]+\/api\/(movie\/(LikeUserLikeMovie|DetailInfo)|anime\/DetailRecommend)\/ script-path=https://raw.githubusercontent.com/2Vrkswz/Pear-vip/main/pear.js,requires-header=true
+
+http-response ^https?:\/\/[^\/]+\/api\/(account\/(IndexDetail|IsVip)|cartoon\/VipInfo) script-path=https://raw.githubusercontent.com/2Vrkswz/Pear-vip/main/pear.js,requires-body=true
+
+[MITM]
+hostname = *.baidu.com2.club, *.pearkin.com, *.pearhot.com
